@@ -23,9 +23,24 @@ function Dashboard() {
     checkLogin();
   }, [navigate]);
 
+  async function handleLogout() {
+    await fetch("http://localhost/auth-api/logout.php", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    setUsername("");
+    navigate("/");
+  }
+
   if (!username) return <p>Loading...</p>;
 
-  return <h2>Welcome, {username}</h2>;
+  return (
+    <div>
+      <h2>Welcome, {username}</h2>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
+  );
 }
 
 export default Dashboard;
