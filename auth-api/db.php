@@ -8,4 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+session_start();
+
 $conn = new mysqli("localhost", "root", "", "auth_app");

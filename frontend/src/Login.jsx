@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -16,7 +18,12 @@ function Login() {
     });
 
     const data = await res.json();
-    setMessage(data.success ? "Logged in!" : data.error);
+
+    if (data.success) {
+      navigate("/dashboard");
+    } else {
+      setMessage(data.error);
+    }
   }
 
   return (
