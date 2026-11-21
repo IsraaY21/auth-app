@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -20,6 +20,7 @@ function Login() {
     const data = await res.json();
 
     if (data.success) {
+      setUser({ id: data.user_id, username: data.username });
       navigate("/dashboard");
     } else {
       setMessage(data.error);

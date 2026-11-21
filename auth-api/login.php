@@ -14,7 +14,11 @@ $user = $stmt->get_result()->fetch_assoc();
 if ($user && password_verify($password, $user['password'])) {
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['username'] = $user['username'];
-    echo json_encode(["success" => true]);
+    echo json_encode([
+        "success" => true,
+        "user_id" => $user['id'],
+        "username" => $user['username'],
+    ]);
 } else {
     http_response_code(401);
     echo json_encode(["error" => "Wrong username or password"]);
