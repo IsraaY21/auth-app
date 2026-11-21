@@ -1,15 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
-function Dashboard({ user }) {
-  const navigate = useNavigate();
-
+function Dashboard({ user, setUser }) {
   async function handleLogout() {
     await fetch("http://localhost/auth-api/logout.php", {
       method: "POST",
       credentials: "include",
     });
 
-    navigate("/");
+    setUser(null);
   }
 
   return (

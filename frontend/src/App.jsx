@@ -46,7 +46,13 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={user ? <Dashboard user={user} /> : <Navigate to="/" replace />}
+          element={
+            user ? (
+              <Dashboard user={user} setUser={setUser} />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
         />
       </Routes>
     </BrowserRouter>
