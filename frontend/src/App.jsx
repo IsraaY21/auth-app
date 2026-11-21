@@ -8,6 +8,18 @@ import Dashboard from "./Dashboard";
 function App() {
   const [user, setUser] = useState(null);
   const [checking, setChecking] = useState(true);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "light"
+  );
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme(theme === "light" ? "dark" : "light");
+  }
 
   useEffect(() => {
     async function restoreSession() {
@@ -33,7 +45,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <p>{user ? `Logged in as ${user.username}` : "Not logged in"}</p>
+      <header className="topbar">
+        <span>{user ? `Logged in as ${user.username}` : "Not logged in"}</span>
+        <button onClick={toggleTheme}>
+          {theme === "light" ? "Dark mode" : "Light mode"}
+        </button>
+      </header>
       <Routes>
         <Route
           path="/"

@@ -1,7 +1,26 @@
+:root {
+  --bg: #f0f2f5;
+  --card: white;
+  --text: #333;
+  --muted: #555;
+  --border: #ccc;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #18191a;
+  --card: #242526;
+  --text: #e4e6eb;
+  --muted: #b0b3b8;
+  --border: #3e4042;
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f0f2f5;
+  background: var(--bg);
+  color: var(--text);
 }
 
 #root {
@@ -16,7 +35,7 @@ body {
   width: 100%;
   max-width: 320px;
   padding: 24px;
-  background: white;
+  background: var(--card);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -25,7 +44,7 @@ body {
 h2 {
   margin-top: 0;
   text-align: center;
-  color: #333;
+  color: var(--text);
 }
 
 input {
@@ -33,9 +52,11 @@ input {
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 4px;
   box-sizing: border-box;
+  background: var(--card);
+  color: var(--text);
 }
 
 button {
@@ -56,5 +77,19 @@ button:hover {
 p {
   margin: 12px 0 0;
   text-align: center;
-  color: #555;
+  color: var(--muted);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.topbar button {
+  width: auto;
+  padding: 6px 12px;
+  font-size: 14px;
 }
