@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 30);
 session_start();
 
 $conn = new mysqli("localhost", "root", "", "auth_app");

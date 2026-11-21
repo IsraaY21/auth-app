@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -14,7 +16,7 @@ function Login({ setUser }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password, remember }),
     });
 
     const data = await res.json();
@@ -43,6 +45,14 @@ function Login({ setUser }) {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
+      <label className="remember">
+        <input
+          type="checkbox"
+          checked={remember}
+          onChange={(e) => setRemember(e.target.checked)}
+        />
+        Remember me for 30 days
+      </label>
       <button type="submit">Login</button>
       <p>{message}</p>
     </form>
