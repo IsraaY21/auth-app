@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require 'guard.php';
 
 session_destroy();
 
